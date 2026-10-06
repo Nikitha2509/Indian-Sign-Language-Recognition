@@ -1,178 +1,83 @@
-# 🤟 Indian Sign Language Recognition System
+# Indian Sign Language Recognition System
 
-A real-time Indian Sign Language (ISL) recognition system using **MediaPipe** and **Deep Learning**, capable of detecting both **single-hand and double-hand gestures** and converting them into **text and speech output**.
+A real-time Indian Sign Language (ISL) recognition system that uses computer vision and deep learning to recognize hand gestures through a webcam and convert them into text and speech.
 
----
+## Features
 
-## 🚀 Features
+- Real-time hand detection using MediaPipe
+- Single-hand gesture recognition
+- Double-hand gesture recognition
+- TensorFlow/Keras trained models
+- Real-time prediction with confidence score
+- Text output for recognized gestures
+- Text-to-speech output
+- Live webcam interface
+- Support for multiple ISL alphabet gestures
 
-- 🔍 Real-time hand gesture detection using webcam  
-- ✋ Supports **single-hand and double-hand gestures**  
-- 🧠 Deep learning models for classification  
-- 🔊 Converts predictions into **speech (Text-to-Speech)**  
-- 🧾 Builds continuous **text output from gestures**  
-- 🧩 Modular and reusable project structure  
-- 💻 Runs locally (no need for Google Colab)
+## Technologies Used
 
----
+- Python
+- TensorFlow / Keras
+- MediaPipe
+- OpenCV
+- NumPy
+- gTTS
+- playsound
 
-## 🧠 Tech Stack
+## Supported Gestures
 
-- Python  
-- TensorFlow / Keras  
-- MediaPipe  
-- OpenCV  
-- NumPy  
-- gTTS (Google Text-to-Speech)
+### Single-Hand Gestures
 
----
+The single-hand model supports:
 
-## 📁 Project Structure
+`C` `I` `L` `O` `U` `V`
 
-```
-sign_double/
+### Double-Hand Gestures
+
+The double-hand model supports:
+
+`A` `B` `D` `E` `F` `G` `K` `M` `N` `P` `Q` `R` `S` `T` `W` `X` `Z`
+
+## How It Works
+
+The system follows these steps:
+
+1. The webcam captures a live video frame.
+2. MediaPipe detects the hand and extracts 21 hand landmarks.
+3. The landmarks are normalized before prediction.
+4. The appropriate TensorFlow model is selected based on the number of detected hands.
+5. The model predicts the corresponding ISL gesture.
+6. The predicted gesture and confidence score are displayed.
+7. The recognized gesture can be converted into speech.
+
+## Project Structure
+
+```text
+Indian-Sign-Language-Recognition/
 │
-├── dataset/                  # (Not included - user must download)
+├── app/
+│   ├── sign_double.py
+│   └── sign_single.py
 │
 ├── src/
-│   ├── config.py
+│   ├── models/
+│   ├── train/
 │   ├── preprocessing.py
 │   ├── feature_extraction.py
 │   ├── dataset_builder.py
-│   ├── models/
-│   ├── train/
-│   └── evaluation.py
+│   ├── evaluation.py
+│   └── config.py
 │
-├── app/
-│   ├── sign_double.py       # Real-time application
+├── classes_single_simple.json
+├── classes_double_simple.json
 │
-├── outputs/
-│   ├── models/
-│   ├── classes/
-│   └── history/
+├── model_single_final.h5
+├── model_double_final.h5
 │
-├── main.py                  # Training pipeline
+├── main.py
 ├── requirements.txt
-└── README.md
-```
-## 📊 Dataset
+├── README.md
+└── .gitignore
 
-This project uses the **Indian Sign Language dataset** from Kaggle:
-
-👉https://www.kaggle.com/datasets/soumyakushwaha/indian-sign-language-dataset
-
-### 📌 Setup Dataset
-
-After downloading, place it like this:
-dataset/
-A/
-B/
-C/
-...
-
-Each folder should contain images of that gesture.
-
----
-
-## ⚙️ Installation
-
-### 1️⃣ Clone the repository
-git clone https://github.com/keerthanarajch/Indian-sign-language-recognition.git
-
-cd Indian-sign-language-recognition
-
-### 2️⃣ Create virtual environment
-python -m venv venv
-source venv/bin/activate # Linux / Mac
-venv\Scripts\activate # Windows
-
-
-### 3️⃣ Install dependencies
-pip install -r requirements.txt
-
-
----
-
-## 🏋️ Train the Model
-python3 main.py
-
-
-This will:
-
-- Build dataset from images  
-- Train single-hand and double-hand models  
-- Save models in `outputs/models/`  
-
----
-
-## 🎥 Run Real-Time Application
-python app/main_app.py
-
-
-### Controls:
-
-- Press **Q** → Quit  
-- Press **C** → Clear text  
-
----
-
-## 📈 Output
-
-After training:
-outputs/
-models/
-model_single.h5
-model_double.h5
-
-classes/
-classes_single.json
-classes_double.json
-
-
----
-
-## 💡 How It Works
-
-1. MediaPipe detects hand landmarks  
-2. Landmarks are normalized  
-3. Features are passed to trained models  
-4. Model predicts gesture class  
-5. Stable predictions are converted to text  
-6. Text is converted to speech  
-
----
-
-## 🎯 Applications
-
-- Assistive technology for hearing/speech impaired  
-- Real-time communication systems  
-- Human-computer interaction  
-- Educational tools  
-
----
-
-## ⚠️ Notes
-
-- Dataset is not included due to size and licensing  
-- Models can be regenerated using `main.py`  
-- Works on CPU (GPU not required)
-
----
-
-## 🙌 Acknowledgements
-
-- Google MediaPipe  
-- TensorFlow  
-- Kaggle dataset contributors  
-
----
-
-## 👩‍💻 Author
-
-Keerthanaraj C H  
-
----
-
-## ⭐ If you like this project
-
-Give it a ⭐ on GitHub!
+Author
+Nikitha S
